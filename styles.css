@@ -1,0 +1,276 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0%;
+}
+
+:root {
+    --color-white: #fff;
+    --color-gray-35: #494c6b;
+    --color-gray-61: #9495a5;
+    --color-gray-84: #d1d2da;
+    --color-gray-92: #e3e4f1;
+    --color-gray-98: #fafafa;
+    --color-blue-85: #c8cbe7;
+    --color-charcoal-11: #171823;
+    --color-charcoal-19: #25273d;
+    --color-charcoal-26: #393a4b;
+    --color-charcoal-35: #4d5067;
+    --color-charcoal-43: #5b5e7e;
+    --color-blue-61: #3a7cfd;
+    --transition: 300ms ease-in-out;
+}
+
+html[data-theme="light"]{
+    --bg-img-mobile: url("./images/bg-mobile-light.jpg");
+    --bg-img-desktop: url("./images/bg-desktop-light.jpg");
+    --color-text-1: var(--color-gray-35);
+    --color-text-2: var(--color-gray-61);
+    --color-text-3: var(--color-gray-84);
+    --bg-app: var(--color-gray-98);
+    --bg-component: var(--color-white);
+    --color-circle: var(--color-gray-92);
+    --component-shadow: 0 35px 50px -15px rgba(194,195,214,0.5);
+    --color-todo-border: var(--color-gray-92);
+    --bg-img-cross: url("./images/icon-cross.svg");
+    --theme-icon: url("./images/icon-moon.svg");
+}
+
+html[data-theme="dark"]{
+    --bg-img-mobile: url("./images/bg-mobile-dark.jpg");
+    --bg-img-desktop: url("./images/bg-desktop-dark.jpg");
+    --color-text-1: var(--color-blue-85);
+    --color-text-2: var(--color-charcoal-43);
+    --color-text-3: var(--color-charcoal-35);
+    --bg-app: var(--color-charcoal-11);
+    --bg-component: var(--color-charcoal-19);
+    --color-circle: var(--color-charcoal-26);
+    --component-shadow: 0 35px 50px -15px rgba(0,0,0,0.5);
+    --color-todo-border: var(--color-charcoal-26);
+    --bg-img-cross: url("./images/icon-cross-2.svg");
+    --theme-icon: url("./images/icon-sun.svg");
+}
+
+
+html {
+    width: 100%;
+    min-height: 100%;
+    font: 18px 'Josefin Sans', sans-serif;
+    background: var(--bg-app) var(--bg-img-desktop) top no-repeat;
+    transition: var(--transition) background;
+}
+
+form {
+    position: relative;
+    margin: 2.25rem auto 1.75rem;
+}
+
+form::before {
+    content: "";
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    border: 1px solid var(--color-circle);
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    margin: 1rem;
+    transition: var(--transition) border;
+
+}
+
+input {
+    background-color: var(--bg-component);
+    width: 100%;
+    padding: 1.2rem 1.2rem 1.2rem 3.5rem;
+    border: none;
+    border-radius: 5px;
+    font: 18px 'Josefin Sans', sans-serif;
+    transition: var(--transition) background-color;
+}
+
+input:focus {
+    outline: none;
+}
+
+input::placeholder {
+    color: var(--color-text-2);
+    transition: var(--transition) color;
+}
+
+.container {
+    margin: 4.5rem auto;
+    max-width: 530px;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-gray-98);
+    letter-spacing: 14px;
+    transition: var(--transition) color;
+}
+
+.theme {
+    height: 26px;
+    width: 26px;
+    background: var(--theme-icon) no-repeat;
+    transition: var(--transition) background;
+}
+
+.list {
+    background-color: var(--bg-component);
+    border-radius: 5px;
+    box-shadow: var(--component-shadow);
+    transition: var(--transition) background-color, var(--transition) box-shadow;
+}
+
+.list>div{
+    text-align: center;
+    color:var(--color-text-1);
+    padding: 1.5rem;
+    font-size: 20px;
+    line-height: 1.8;
+    transition: var(--transition) color;
+}
+
+label {
+    width: 100%;
+    color: var(--color-text-1);
+    display: block;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 1.2rem 1.2rem 1.2rem 3.5rem;
+    border-bottom: 2px solid var(--color-todo-border);
+    transition: var(--transition) color, var(--transition) border-bottom;
+}
+
+/* label:last-of-type{
+    border-bottom: none;
+} */
+
+label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    border: 1px solid var(--color-circle);
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    margin: 1rem;
+    transition: var(--transition) border;
+}
+
+/* label:hover input ~ .checkmark {
+    background-image: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    transition: var(--transition) width, var(--transition) height;
+  } */
+
+.checkmark::before {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+label input:checked~.checkmark::before {
+    display: block;
+}
+
+
+label input:checked~.text {
+    text-decoration: line-through;
+    color: var(--color-text-3);
+    transition: var(--transition) color;
+}
+
+label .checkmark::before {
+    content: url("./images/icon-check.svg");
+    top: -1px;
+    left: -1px;
+    width: 23px;
+    height: 20px;
+    border-radius: 50%;
+    background-image: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    text-align: center;
+    padding-top: 3px ;
+    transition: var(--transition) background-image;
+}
+
+label .del {
+    background: var(--bg-img-cross) no-repeat;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    z-index: 3;
+    right:1.2rem;
+    visibility: hidden;
+    transition: var(--transition) background;
+}
+
+label:hover .del{
+    visibility: visible;
+}
+
+
+.list>.footer{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 0.8rem 1.5rem;
+    color: var(--color-text-2);
+    transition: var(--transition) color;
+}
+
+.footer .active{
+    width: 160px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+}
+
+.active>span:hover, .footer>div:last-child:hover{
+    cursor: pointer;
+    color:var(--color-text-1);
+    transition: var(--transition) color;
+}
+
+.active>span:focus{
+    color: var(--color-blue-61);
+}
+
+
+@media screen and (min-width: 1440px) {
+    html{
+        background: var(--bg-app) var(--bg-img-desktop) top/contain no-repeat;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    html{
+        background: var(--bg-app) var(--bg-img-mobile) top no-repeat;
+    }
+}
